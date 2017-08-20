@@ -1,3 +1,9 @@
+Установка docker
+http://containertutorials.com/installation/installation-ubuntu-15.10.html
+
+Установка docker-compose
+https://docs.docker.com/compose/install/#install-compose
+
 ```
 version: '2'
 services:
@@ -5,6 +11,8 @@ services:
     image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=123
+    volumes:
+      - ./data:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
@@ -76,6 +84,8 @@ services:
     image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=123
+    volumes:
+      - ./data:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
