@@ -1,0 +1,26 @@
+version: '2'
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123
+      - VIRTUAL_HOST=phpmyadmin.dev
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  project:
+    image: shcoder/php-fpm-nginx
+    environment:
+      - VIRTUAL_HOST=project.dev
+    volumes:
+      - /path/to/project:/var/www
+      - ./conf/default.conf:/etc/nginx/conf.d/default.conf
